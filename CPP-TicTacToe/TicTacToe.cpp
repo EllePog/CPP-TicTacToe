@@ -14,16 +14,14 @@ TicTacToe::TicTacToe() {
 bool TicTacToe::IsGameOver() const {
 	winner = 0;	
 	for (int i = 0; i < 8; i++) {
-		if (m_board[WinPoss[i][0]] != 0 &&
-			m_board[WinPoss[i][0]] == m_board[WinPoss[i][1]] &&
-			m_board[WinPoss[i][0]] == m_board[WinPoss[i][2]]) {
+		if (m_board[WP[i][0]] != 0 &&
+			m_board[WP[i][0]] == m_board[WP[i][1]] &&
+			m_board[WP[i][0]] == m_board[WP[i][2]]) {
 
-			winner = m_board[WinPoss[i][0]];
+			winner = m_board[WP[i][0]];
 			return true;
 		}
-	}
-	// nMML = No More Moves Left
-	bool nMML = true;
+	}	
 	for (int i = 1; i < 10; i++) {
 		if (m_board[i] == 0) {
 			nMML = false;
