@@ -12,8 +12,7 @@ TicTacToe::TicTacToe() {
 	}
 }
 bool TicTacToe::IsGameOver() const {
-	winner = 0;
-	// 
+	winner = 0;	
 	for (int i = 0; i < 8; i++) {
 		if (m_board[WinPoss[i][0]] != 0 &&
 			m_board[WinPoss[i][0]] == m_board[WinPoss[i][1]] &&
@@ -23,17 +22,18 @@ bool TicTacToe::IsGameOver() const {
 			return true;
 		}
 	}
-	bool boardFull = true;
+	// nMML = No More Moves Left
+	bool nMML = true;
 	for (int i = 1; i < 10; i++) {
 		if (m_board[i] == 0) {
-			boardFull = false;
+			nMML = false;
 			break;
 		}
 	}
-	if (boardFull) {
+	if (nMML) {
 		winner = 3;
 	}
-	return boardFull;
+	return nMML;
 };
 
 void TicTacToe::Display() const {
