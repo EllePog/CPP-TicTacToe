@@ -2,8 +2,6 @@
 #include <iostream>
 #include <conio.h>
 
-//Define the Constructors to setup the empty board and initialize the player.
-
 using namespace std;
 
 TicTacToe::TicTacToe() {
