@@ -9,23 +9,20 @@ TicTacToe::TicTacToe() {
 
 	for (int i = 0; i < 10; i++) {
 		m_board[i] = 0;
-
 	}
 }
 bool TicTacToe::IsGameOver() const {
 	winner = 0;
-
+	// 
 	for (int i = 0; i < 8; i++) {
 		if (m_board[WinPoss[i][0]] != 0 &&
 			m_board[WinPoss[i][0]] == m_board[WinPoss[i][1]] &&
-			m_board[WinPoss[i][1]] == m_board[WinPoss[i][2]]) {
-
+			m_board[WinPoss[i][0]] == m_board[WinPoss[i][2]]) {
 
 			winner = m_board[WinPoss[i][0]];
 			return true;
 		}
 	}
-
 	bool boardFull = true;
 	for (int i = 1; i < 10; i++) {
 		if (m_board[i] == 0) {
@@ -33,33 +30,30 @@ bool TicTacToe::IsGameOver() const {
 			break;
 		}
 	}
-
 	if (boardFull) {
 		winner = 3;
 	}
-
 	return boardFull;
 };
 
 void TicTacToe::Display() const {
-	cout << endl;
-	for (int i = 0; i < 5; i++) {
-		cout << m_display[i] << endl;
+	for (int i = 0; i < 7; i++) {
+		cout << "\t\t  " << m_display[i] << "\n";
+		//Tabs center it for TakeTurn().
 	}
-	cout << endl;
-
 	if (!IsGameOver()) {
-		cout << "Player " << (playerXTurn ? "X" : "O") << "'s turn" << endl;
+		cout << "\t\t  " << (playerXTurn ? "X" : "O") << "'s turn" << "\n";
+		//Tabs center it for TakeTurn().
 	}
 	else {
 		if (winner == playerX) {
-			cout << "Player X wins!" << endl;
+			cout << "\t" << "X's won!" << "\n";
 		}
 		else if (winner == playerO) {
-			cout << "Player O wins!" << endl;
+			cout << "\t" << "O's won!" << "\n";
 		}
 		else {
-			cout << "Game ended in a draw!" << endl;
+			cout << "\t" << "You tied! Bummer." << "\n";
 		}
 	}
 };
@@ -70,10 +64,10 @@ void TicTacToe::TakeTurn() {
 	char input;
 	int player;
 
-	cout << "Please enter the number of your space: ";
+	cout << "Please enter the number of the space you want: ";
 	cin >> choice;
-	while (0 > choice > 10 || m_board[choice] != 0) {
-		cout << "Please enter a valid number choice: ";
+	while (1 > choice || choice > 10 || m_board[choice] != 0) {
+		cout << "Please enter a valid number: ";
 		cin >> choice;
 	}
 	if (playerXTurn) {
@@ -88,18 +82,17 @@ void TicTacToe::TakeTurn() {
 	m_board[choice] = player;
 
 	switch (choice) {
-	case 1:	m_display[0][0] = input; break;
-	case 2:	m_display[0][2] = input; break;
-	case 3:	m_display[0][4] = input; break;
-	case 4:	m_display[2][0] = input; break;
-	case 5:	m_display[2][2] = input; break;
-	case 6: m_display[2][4] = input; break;
-	case 7: m_display[4][0] = input; break;
-	case 8: m_display[4][2] = input; break;
-	case 9: m_display[4][4] = input; break;
-	default: cout << "Unexpected error.";
+	case 1:	m_display[1][1] = input; break;
+	case 2:	m_display[1][3] = input; break;
+	case 3:	m_display[1][5] = input; break;
+	case 4:	m_display[3][1] = input; break;
+	case 5:	m_display[3][3] = input; break;
+	case 6: m_display[3][5] = input; break;
+	case 7: m_display[5][1] = input; break;
+	case 8: m_display[5][3] = input; break;
+	case 9: m_display[5][5] = input; break;
+	default: cout << "You have forfeited your turn. Too bad for you.";
 	}
-
 	playerXTurn = !playerXTurn;
 }
 
