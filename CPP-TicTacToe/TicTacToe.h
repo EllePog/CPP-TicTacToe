@@ -1,19 +1,32 @@
 #pragma once
 #include "Game.h"
+#include<iostream>
+#include<vector>
 
-class Something {
+class TicTacToe : public Game {
+
+private:
+
+	bool won = false;
+	mutable bool playerXTurn = true;
+
+	int playerX = 1;
+	int playerO = 2;
+
+	int WinPoss[8][3] = { {1, 2, 3}, {1, 5, 9}, {1, 4, 7} ,{2, 5, 8}, {3, 6, 9}, {3, 5, 7}, {4, 5, 6}, {7, 8, 9} };
+	mutable int m_board[10];
+	mutable char m_display[5][6] = { { '1', '|', '2', '|', '3', '\0' }, { '-', '-', '-', '-', '-', '\0' }, { '4', '|', '5', '|', '6', '\0' }, { '-', '-', '-', '-', '-', '\0' }, { '7', '|', '8', '|', '9', '\0' } };
+	mutable int winner = 0;
 
 public:
-	char m_board[9] = {};
 
-	char m_Row1[6] = { ' ', '|', ' ', '|', ' ', '\0' };
-	char m_Divide1[6] = { '-', '-', '-', '-', '-', '\0' };
-	char m_Row2[6] = { ' ', '|', ' ', '|', ' ', '\0' };
-	char m_Divide2[6] = { '-', '-', '-', '-', '-', '\0' };
-	char m_Row3[6] = { ' ', '|', ' ', '|', ' ', '\0' };
+	TicTacToe();
+	virtual ~TicTacToe() {}
 
-
-	virtual void Display() const { std::cout << m_Row1 << "\n" << m_Divide1 << "\n" << m_Row2 << "\n" << m_Divide2 << "\n" << m_Row3; }
+	virtual bool IsGameOver() const;
+	virtual void Display() const;
+	virtual void TakeTurn();
 
 
 };
+
